@@ -1,0 +1,36 @@
+stages:
+- name: Code Review--run Checkmarx test
+  when: 
+    branch: [master, checkmarx]
+  steps:
+  - runScriptConfig:
+      image: iiiorg/checkmarx-runner
+      shellScript: cd /usr/src/app; ls; echo ${api_orign};node app.js;
+    env:
+      git_url: ${CICD_GIT_URL}
+      verbose: true
+    envFrom:
+    - sourceName: api-origin
+      sourceKey: api-origin
+      targetKey: api_origin
+    - sourceName: gitlab-token
+      sourceKey: git-token
+      targetKey: git_token
+    - sourceName: jwt-token
+      sourceKey: jwt-token
+      targetKey: jwt_token
+    - sourceName: checkmarx-secret
+      sourceKey: username
+      targetKey: username
+    - sourceName: checkmarx-secret
+      sourceKey: password
+      targetKey: password
+    - sourceName: checkmarx-secret
+      sourceKey: check-interval
+      targetKey: check_interval
+    - sourceName: checkmarx-secret
+      sourceKey: client-secret
+      targetKey: client_secret
+    - sourceName: checkmarx-secret
+      sourceKey: cm-url
+      targetKey: cm_url
