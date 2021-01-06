@@ -11,7 +11,7 @@ stages:
       verbose: true
     envFrom:
     - sourceName: nexus
-      sourceKey: api_origin
+      sourceKey: api-origin
       targetKey: api_origin
     - sourceName: nexus
       sourceKey: username
@@ -26,8 +26,8 @@ stages:
       sourceKey: password
       targetKey: password
     - sourceName: checkmarx
-      sourceKey: client_secret
+      sourceKey: client-secret
       targetKey: client_secret
     - sourceName: checkmarx
-      sourceKey: cm_url
+      sourceKey: cm-url
       targetKey: cm_url
